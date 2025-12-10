@@ -7,7 +7,7 @@ const { auth, JWT_SECRET } = require("./auth.js");
 const { z } = require("zod")
 
 mongoose.connect(
-    "mongodb+srv://tanayburbure:%40Iamtanay1@tanayburbure.hpsvfyg.mongodb.net/todo-app-database"
+    "Data base URL"
 );
 
 const app = express();
