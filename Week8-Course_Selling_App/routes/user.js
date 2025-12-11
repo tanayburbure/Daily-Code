@@ -3,6 +3,8 @@ const userRouter = Router();
 
 
 userRouter.post("/signup",function(Req,res){
+    const email = req.body.usernname;
+    const password = req.body.password;
     res.json({
         message : "Signup Endpoint"
     })
