@@ -3,14 +3,18 @@ const courseRouter = Router();
 
 
 courseRouter.post("/purchase", function(Req,res){
-
+    res.json({
+        message : "purchase Endpoint"
+    })
 });
 
-courseRouter.get("/allcourses", function(req,res){
-
+courseRouter.get("/preview", function(req,res){
+    res.json({
+        message : "Preview Endpoint"
+    })
 });
 
 
-module.export = {
+module.exports = {
     courseRouter : courseRouter
 }
