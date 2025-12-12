@@ -1,9 +1,9 @@
 const { Router } = require("express");
 const userRouter = Router();
 const { userModel } = require("../db");
+const { JWT_USER_SECRET } = require("../config")
 
 const jwt = require("jsonwebtoken");
-const JWT_SECRET = "mnbvcxzasdfghjklpo"
 
 userRouter.post("/signup", async function (req, res) {
     const { email, password, firstName, lastName } = req.body;
@@ -27,14 +27,14 @@ userRouter.post("/signup", async function (req, res) {
 userRouter.post("/signin", async function (req, res) {
 
     const { email, password } = req.body;
-    const user = await userModel.find({
+    const user = await userModel.findOne({
         email: email,
         password: password
     })
     if (user) {
         const token = jwt.sign({
             id: user._id
-        }, JWT_SECRET);
+        }, JWT_USER_SECRET);
         res.json({
             token: token
         })
