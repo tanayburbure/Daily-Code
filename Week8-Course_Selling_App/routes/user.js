@@ -1,9 +1,7 @@
 const { Router } = require("express");
 const userRouter = Router();
 const { userModel } = require("../db");
-const { JWT_USER_SECRET } = require("../config")
-
-const jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken")
 
 userRouter.post("/signup", async function (req, res) {
     const { email, password, firstName, lastName } = req.body;
@@ -17,7 +15,9 @@ userRouter.post("/signup", async function (req, res) {
         })
     }
     catch (e) {
-
+        return res.status(400).json({
+        message: "User already exists"
+    });
     }
     res.json({
         message: "Signup Endpoint"
@@ -34,7 +34,7 @@ userRouter.post("/signin", async function (req, res) {
     if (user) {
         const token = jwt.sign({
             id: user._id
-        }, JWT_USER_SECRET);
+        }, process.env.JWT_USER_SECRET);
         res.json({
             token: token
         })
@@ -44,12 +44,6 @@ userRouter.post("/signin", async function (req, res) {
             message: "Invalid Credentials.....!"
         })
     }
-});
-
-userRouter.get("/purchases", function (req, res) {
-    res.json({
-        message: "Purchases Endpoint"
-    })
 });
 
 module.exports = {
