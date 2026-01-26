@@ -2,11 +2,19 @@ import {useState , useEffect} from 'react';
 import './App.css'
 
 function App() {
+  //conditional rendering ........
+  let [counterVisible,setCounterVisible] = useState(true);
+  useEffect(function(){
+    setInterval(function(){
+      setCounterVisible(c => !c)
+    },5000)
+  },[])
   return (
     <>
       <div>
         <h1>Hi there</h1>
-        <Counter></Counter>
+        // conditional rendering 
+        {counterVisible ? <Counter></Counter> :null}
       </div> 
     </>     
   )
@@ -29,10 +37,16 @@ function Counter(){
   useEffect(function(){
     setInterval(function(){
       // setCount(count => count + 1)
-      setCount(function(currentValue){
+      let clock = setCount(function(currentValue){
         return currentValue + 1
       })
     } , 1000)
+
+    return function(){
+      console.log("on unmounting")
+      clearInterval(clock)
+    }
+
     console.log("mounted")
   },[])
 
