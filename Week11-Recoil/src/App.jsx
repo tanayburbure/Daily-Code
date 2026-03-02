@@ -1,53 +1,39 @@
-import { RecoilRoot, useRecoilValue, useSetRecoilState } from 'recoil';
-import { counterAtom } from './store/atom/counter';
-
-/// to use recoil we have to downgrade the version to 18...
+import React from 'react'
+import { RecoilRoot, useRecoilValue, useSetRecoilState } from 'recoil'
+import { counterAtom, evenSelector } from './store/atom/counter'
 
 function App() {
   return (
-    <RecoilRoot>
-      <Counter/>
-    </RecoilRoot>
-  )
-}
-
-function Counter(){
-  return (
     <div>
-      <CurrentCounter/>
-      <Increase/>
-      <Decrease/>
+      <RecoilRoot>
+        <Buttons />
+        <Counter />
+        <isEven />
+      </RecoilRoot>
     </div>
   )
 }
 
-function CurrentCounter(){
-  const count = useRecoilValue(counterAtom);
-  return <div>{count}</div>
+function Buttons() {
+  const setCount = useSetRecoilState(counterAtom)
+  return <div>
+    <button onClick={() => setCount((c) => c + 2)}>Increase</button>
+    <button onClick={() => setCount((c) => c - 1)}>Decrease</button>
+  </div>
 }
 
-function Increase(){
-  const setCount = useSetRecoilState(counterAtom);
-
-  return (
-    <div>
-      <button onClick={() => setCount(c => c + 1)}>
-        Increase
-      </button>
-    </div>
-  )
+function Counter() {
+  const count = useRecoilValue(counterAtom)
+  return <div>
+    {count}
+  </div>
 }
 
-function Decrease(){
-  const setCount = useSetRecoilState(counterAtom);
-
-  return (
-    <div>
-      <button onClick={() => setCount(c => c - 1)}>
-        Decrease
-      </button>
-    </div>
-  )
+function isEven() {
+  const even = useRecoilValue(evenSelector)
+  return <div>
+    {even ? "Even" : "Odd"}
+  </div>
 }
 
-export default App;
+export default App
