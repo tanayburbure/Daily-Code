@@ -1,8 +1,12 @@
 import React from 'react'
+import { usePostTitle } from './hooks/useFetch'
 
 function App() {
+  const postTitle = usePostTitle();
+
+
   return (
-    <div>App</div>
+    <div>{postTitle}</div>
   )
 }
 
