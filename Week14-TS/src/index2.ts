@@ -66,16 +66,45 @@ if (ans){
 interface people {
   name : string ;
   age : number ;
-  greet : () => string
+  // greet : () => string
 }
 
-let People : people = {
-  name : "Harkirat" ,
-  age : 24 ,
-  greet : ()=> {
-    return "Hi There Dumbo"
+// let People : people = {
+//   name : "Harkirat" ,
+//   age : 24 ,
+//   greet : ()=> {
+//     return "Hi There Dumbo"
+//   }
+// }
+
+// const greet = People.greet()
+// console.log(greet)
+
+class Manager implements people {
+  name : string ;
+  age : number ;
+
+  constructor(name : string , age : number) {
+    this.name = name ;
+    this.age = age
   }
 }
 
-const greet = People.greet()
-console.log(greet)
+let newUser = new Manager ("John", 25)
+console.log(newUser)
+
+class Shape {
+  area() {
+    console.log("Hi i am the area")
+  }
+}
+
+class Rectangle extends Shape{
+  width : number ;
+  height : number ;
+  constructor(){
+    super();
+    this.width = 2 ;
+    this.height = 3
+  } 
+}
