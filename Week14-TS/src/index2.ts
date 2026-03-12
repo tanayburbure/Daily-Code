@@ -3,7 +3,6 @@
 // }
 // console.log(Sum(5,9))
 
-import ts = require("typescript");
 
 // function isEven ( num : number) : boolean {
 //     if(num % 2 == 0){
@@ -107,4 +106,34 @@ class Rectangle extends Shape{
     this.width = 2 ;
     this.height = 3
   } 
+}
+
+// Now we are headinhg toward types 
+
+type employee = {
+  name : string ;
+  startDate : string ;
+}
+
+type manager = {
+  name : string ;
+  department : string
+}
+
+type TeamLead = employee & manager ;
+
+let e : employee ={
+  name : "Tanay Burbure" ,
+  startDate : "16-04-2004"
+}
+
+let m : manager = {
+  name: "HoldOn" ,
+  department : "Electronics"
+}
+
+let t : TeamLead = {
+  name : "Harkirat" ,
+  startDate : "12-12-2008",
+  department : "Computer Science"
 }
