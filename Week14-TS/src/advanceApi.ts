@@ -41,3 +41,15 @@ UpdateEmployee({
     age: 25
 })
 
+// Optional or Partial In TYPESCRIPT
+
+
+type PropsOptional = Partial<UpdateProps>
+
+function PropsOptionals(propsOptional : PropsOptional){
+    console.log(`Name : ${propsOptional.name} , Email : ${propsOptional.email} , Age : ${propsOptional.age}`)
+}
+
+PropsOptionals({
+    name : "Tanay Burbure"
+})
